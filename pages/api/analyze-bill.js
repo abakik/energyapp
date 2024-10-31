@@ -1,10 +1,38 @@
+import Cors from 'cors'
+
+// Initialize the cors middleware
+const cors = Cors({
+    methods: ['POST', 'GET', 'HEAD'],
+    origin: ['https://energyapp-ten.vercel.app', 'http://localhost:3000'],
+    credentials: true,
+})
+
+// Helper method to wait for a middleware to execute before continuing
+function runMiddleware(req, res, fn) {
+    return new Promise((resolve, reject) => {
+        fn(req, res, (result) => {
+            if (result instanceof Error) {
+                return reject(result)
+            }
+            return resolve(result)
+        })
+    })
+}
+
 export default async function handler(req, res) {
+    // Run the middleware
+    await runMiddleware(req, res, cors)
+
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
     try {
         const { billText, persona } = req.body;
+        
+        if (!process.env.OPENAI_API_KEY) {
+            throw new Error('OPENAI_API_KEY is not configured');
+        }
         
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
@@ -16,21 +44,7 @@ export default async function handler(req, res) {
                 model: "gpt-3.5-turbo",
                 messages: [{
                     role: "system",
-                    content: `You are an energy bill analysis expert. Analyze the bill for a ${persona}. 
-                    Structure your response in clear sections:
-                    
-                    1. Usage Summary:
-                    - Extract and show actual kWh usage
-                    - Compare with previous periods if available
-                    - Show peak/off-peak usage if available
-                    
-                    2. Cost Breakdown:
-                    - List all charges with exact amounts
-                    - Show rate details (price per kWh)
-                    - Include all fees and taxes
-                    
-                    3. Recommendations:
-                    [Previous system prompt content...]`
+                    content: `You are an energy bill analysis expert. Analyze the bill for a ${persona}.`
                 }, {
                     role: "user",
                     content: billText
@@ -42,11 +56,12 @@ export default async function handler(req, res) {
 
         const data = await response.json();
         if (data.error) {
+            console.error('OpenAI API Error:', data.error);
             throw new Error(data.error.message);
         }
         return res.json({ content: data.choices[0].message.content });
     } catch (error) {
         console.error('Error:', error);
-        return res.status(500).json({ error: 'Error processing request' });
+        return res.status(500).json({ error: error.message });
     }
 } 
