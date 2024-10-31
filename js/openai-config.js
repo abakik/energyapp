@@ -1,11 +1,13 @@
-const API_URL = window.location.hostname === 'localhost' 
-    ? 'http://localhost:3000'
-    : 'https://energyapp-ten.vercel.app';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 
+    (window.location.hostname === 'localhost' 
+        ? 'http://localhost:3000'
+        : '');  // Empty string will make it use relative URLs in production
 
 class OpenAIService {
     static async analyzeBill(billText, persona) {
         try {
-            const response = await fetch(`${API_URL}/api/analyze-bill`, {
+            // Use relative URL in production
+            const response = await fetch('/api/analyze-bill', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -17,6 +19,7 @@ class OpenAIService {
             });
 
             if (!response.ok) {
+                console.error('API Response:', await response.text());  // Add this for debugging
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
@@ -33,7 +36,8 @@ class OpenAIService {
         try {
             console.log('Context being sent to API:', context);
 
-            const response = await fetch(`${API_URL}/api/chat`, {
+            // Use relative URL in production
+            const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -47,6 +51,7 @@ class OpenAIService {
             });
 
             if (!response.ok) {
+                console.error('API Response:', await response.text());  // Add this for debugging
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
