@@ -6,7 +6,8 @@ const fetch = require('node-fetch');
 const app = express();
 
 app.use(cors({
-    origin: 'https://energyapp-ten.vercel.app/', // Replace with your frontend URL
+    origin: ['https://energyapp-ten.vercel.app', 'http://localhost:3000'],
+    methods: ['GET', 'POST'],
     credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));

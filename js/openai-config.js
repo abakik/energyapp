@@ -1,7 +1,11 @@
+const API_URL = process.env.NODE_ENV === 'production' 
+    ? 'https://energyapp-ten.vercel.app'
+    : 'http://localhost:3000';
+
 class OpenAIService {
     static async analyzeBill(billText, persona) {
         try {
-            const response = await fetch('http://localhost:3000/api/analyze-bill', {
+            const response = await fetch(`${API_URL}/api/analyze-bill`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -32,7 +36,7 @@ class OpenAIService {
         try {
             console.log('Context being sent to API:', context);
 
-            const response = await fetch('http://localhost:3000/api/chat', {
+            const response = await fetch(`${API_URL}/api/chat`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
