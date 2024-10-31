@@ -5,7 +5,10 @@ const fetch = require('node-fetch');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://energyapp-ten.vercel.app/', // Replace with your frontend URL
+    credentials: true
+}));
 app.use(express.json({ limit: '10mb' }));
 
 // Route for bill analysis
