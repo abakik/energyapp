@@ -1,6 +1,6 @@
-const API_URL = process.env.NODE_ENV === 'production' 
-    ? 'https://energyapp-ten.vercel.app'
-    : 'http://localhost:3000';
+const API_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000'
+    : 'https://energyapp-ten.vercel.app';
 
 class OpenAIService {
     static async analyzeBill(billText, persona) {
