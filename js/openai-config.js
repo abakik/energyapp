@@ -5,21 +5,14 @@ const API_URL = window.location.hostname === 'localhost'
 class OpenAIService {
     static async analyzeBill(billText, persona) {
         try {
-            const apiUrl = process.env.NODE_ENV === 'development' 
-                ? 'http://localhost:3000/api/analyze-bill'
-                : '/api/analyze-bill';
-            
-            const response = await fetch(apiUrl, {
+            const response = await fetch(`${API_URL}/api/analyze-bill`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     billText,
-                    persona,
-                    analysisType: 'detailed',
-                    includeRecommendations: true,
-                    includeCostSavings: true
+                    persona
                 })
             });
 
