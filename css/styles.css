@@ -1,0 +1,722 @@
+:root {
+    --gradient-start: #4568DC;
+    --gradient-end: #B06AB3;
+    --text-white: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --button-green: #4CD964;
+    --shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: var(--text-white);
+}
+
+/* Layout Container */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Navbar */
+.navbar {
+    background: transparent;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.nav-links a {
+    color: var(--text-white);
+    text-decoration: none;
+    margin-left: 2rem;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Persona Grid */
+.persona-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.persona-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.persona-card:hover {
+    transform: translateY(-5px);
+}
+
+.persona-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+}
+
+.persona-card h3 {
+    color: var(--gradient-start);
+    margin-bottom: 1rem;
+}
+
+.persona-card p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Upload Section */
+.upload-section {
+    margin-top: 3rem;
+}
+
+.upload-container {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.upload-container h2 {
+    color: var(--gradient-start);
+    margin-bottom: 2rem;
+}
+
+.upload-box {
+    border: 2px dashed rgba(0,0,0,0.1);
+    border-radius: 15px;
+    padding: 3rem 2rem;
+    margin: 2rem 0;
+    transition: all 0.3s ease;
+}
+
+.upload-box:hover {
+    border-color: var(--button-green);
+}
+
+/* Results Section */
+.results-container {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.analysis-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: 15px;
+    background: #f8f9fa;
+    color: #333;
+}
+
+.analysis-section h3 {
+    color: var(--gradient-start);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+}
+
+.analysis-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.analysis-table td {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    color: #333;
+    line-height: 1.6;
+}
+
+.analysis-table td.label {
+    font-weight: 500;
+    width: 30%;
+    color: #333;
+}
+
+.analysis-table td.value {
+    color: #444;
+}
+
+.analysis-table td.bullet {
+    padding-left: 1rem;
+}
+
+.analysis-table td.bullet::before {
+    content: none;
+}
+
+.analysis-section.simplified {
+    color: #333;
+}
+
+.analysis-section.simplified .value {
+    color: #444;
+}
+
+.simple-recommendation-item {
+    color: #333;
+    padding-left: 0;
+}
+
+.value.above {
+    color: #d63031;
+}
+
+.value.below {
+    color: #27ae60;
+}
+
+.value.within {
+    color: #2980b9;
+}
+
+.upload-container h2,
+.upload-container p {
+    color: #333;
+}
+
+.upload-box {
+    color: #333;
+}
+
+.results-container h2,
+.results-container h3,
+.results-container p {
+    color: #333;
+}
+
+/* Buttons */
+.upload-btn, .simplify-btn {
+    background: var(--button-green);
+    color: var(--text-white);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.upload-btn:hover, .simplify-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Chatbot */
+.chatbot-widget {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+}
+
+.chatbot-container {
+    position: fixed;
+    bottom: 5rem;
+    right: 2rem;
+    width: 350px;
+    height: 500px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.chatbot-header {
+    padding: 1rem;
+    background: var(--gradient-start);
+    color: var(--text-white);
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.chat-input {
+    padding: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    display: flex;
+    gap: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+
+    .hero {
+        padding: 2rem 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .persona-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .chatbot-container {
+        width: calc(100% - 2rem);
+        right: 1rem;
+        bottom: 4rem;
+    }
+}
+
+/* Add/Update clickable term styles */
+.clickable-term {
+    color: var(--gradient-start);
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+    transition: all 0.2s ease;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.clickable-term:hover {
+    background-color: rgba(69, 104, 220, 0.1);
+    text-decoration-style: solid;
+}
+
+/* Update table styles to accommodate clickable terms */
+.analysis-table td {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    color: #333;
+    line-height: 1.6;
+}
+
+.analysis-table td .clickable-term {
+    display: inline-block;
+    margin: 2px 0;
+}
+
+/* Add these chatbot message styles */
+.message {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    max-width: 80%;
+    color: #333; /* Dark text color for all messages */
+}
+
+.message.user {
+    background-color: var(--gradient-start);
+    color: white; /* Keep user messages white on blue background */
+    margin-left: auto;
+}
+
+.message.bot {
+    background-color: #f0f0f0;
+    color: #333; /* Dark text for bot messages */
+    margin-right: auto;
+}
+
+.message.typing {
+    background-color: #f0f0f0;
+    color: #666;
+    font-style: italic;
+}
+
+/* Chatbot input styles */
+.chat-input input {
+    color: #333; /* Dark text for input */
+    background: white;
+}
+
+.chat-input input::placeholder {
+    color: #666; /* Darker placeholder text */
+}
+
+/* Chatbot header text */
+.chatbot-header h3 {
+    color: white; /* Keep header text white since it's on colored background */
+}
+
+.close-chat {
+    color: white;
+    opacity: 0.8;
+}
+
+/* Make sure the chat messages are readable */
+.chat-messages {
+    background: white;
+    color: #333;
+}
+
+/* Add these styles for persona selection */
+.persona-card.active {
+    border: 3px solid var(--gradient-start);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(69, 104, 220, 0.2);
+}
+
+.persona-card.active h3 {
+    color: var(--gradient-start);
+}
+
+/* Update chatbot controls */
+.chatbot-toggle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gradient-start);
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.chatbot-toggle:hover {
+    transform: scale(1.1);
+}
+
+.chatbot-toggle .chat-icon {
+    font-size: 1.5rem;
+}
+
+.close-chat {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.close-chat:hover {
+    opacity: 1;
+}
+
+/* Add minimize button styles */
+.chatbot-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.minimize-chat {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.minimize-chat:hover {
+    opacity: 1;
+}
+
+.chatbot-container.minimized {
+    height: 60px;
+    overflow: hidden;
+}
+
+/* Add persona selection animation */
+.persona-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.persona-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.persona-card.active {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(69, 104, 220, 0.2);
+}
+
+.persona-card.active::before {
+    opacity: 0.1;
+}
+
+.persona-card.active h3 {
+    color: var(--gradient-start);
+    font-weight: 700;
+}
+
+.persona-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 150px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loading-overlay.hidden {
+    display: none;
+}
+
+/* Spinner Animation */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--gradient-start);
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+.loading-text {
+    color: var(--gradient-start);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Add opacity to main content when loading */
+body.loading main,
+body.loading .chatbot-widget {
+    opacity: 0.5;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Add these styles for comparative terms */
+.comparative-term {
+    font-weight: 600;
+    color: #333;
+    padding: 0 4px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+/* Add assessment color coding */
+.assessment-value {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.assessment-high {
+    background-color: #ffeaea;
+    color: #d63031;
+}
+
+.assessment-low {
+    background-color: #e8f8f5;
+    color: #27ae60;
+}
+
+.assessment-normal {
+    background-color: #e3f2fd;
+    color: #2980b9;
+}
+
+/* Simplified view color coding */
+.simplified .assessment-value {
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    margin: 4px 0;
+}
+
+/* Update comparative terms */
+.comparative-term {
+    font-weight: 600;
+    color: #333;
+    padding: 0 4px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+/* Update simplified view styles */
+.analysis-section.simplified {
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.analysis-section.simplified h3 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.analysis-section.simplified .analysis-table td {
+    font-size: 1.4rem;
+    padding: 1.5rem;
+}
+
+/* Usage comparison styles in simplified view */
+.simplified .usage-comparison {
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 12px;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.simplified .usage-comparison.above {
+    background-color: #ffeaea;
+    color: #d63031;
+    border-left: 6px solid #d63031;
+}
+
+.simplified .usage-comparison.below {
+    background-color: #e8f8f5;
+    color: #27ae60;
+    border-left: 6px solid #27ae60;
+}
+
+.simplified .usage-comparison.within {
+    background-color: #e3f2fd;
+    color: #2980b9;
+    border-left: 6px solid #2980b9;
+}
+
+/* Top recommendations in simplified view */
+.simplified .recommendation-item {
+    background: white;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-left: 6px solid var(--gradient-start);
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.simplified .recommendation-item .action {
+    background: var(--button-green);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--button-green);
+    border-radius: 25px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    width: 200px; /* Set a fixed width */
+    text-align: center; /* Center the text */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+}
+
+.simplified .recommendation-item .action:hover {
+    background-color: white;
+    color: var(--button-green);
+    border: 2px solid var(--button-green);
+    transform: translateY(-2px);
+}
+
+/* Remove all bullet points and symbols */
+.analysis-table td,
+.recommendation-item,
+.simple-recommendation-item {
+    list-style: none;
+    padding-left: 0;
+}
+
+.analysis-table td::before,
+.recommendation-item::before,
+.simple-recommendation-item::before {
+    content: none;
+}
+
+/* Add this to your existing CSS */
+.upload-icon {
+    width: 35px;  /* Set width to 15px */
+    height: 35px; /* Set height to 15px */
+    margin-bottom: 1rem; /* Adjust margin as needed */
+}

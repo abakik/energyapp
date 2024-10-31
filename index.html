@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Literacy App</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        // Initialize PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+           
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Understand Your Energy Usage</h1>
+            <p>Select your profile to get personalized energy-saving recommendations</p>
+        </section>
+
+        <section class="personas">
+            <div class="persona-grid">
+                <div class="persona-card" data-persona="cost-conscious">
+                    <img src="https://placehold.co/100x100/2ecc71/ffffff?text=Cost" alt="Cost-Conscious User">
+                    <h3>Cost-Conscious User</h3>
+                    <p>Looking to manage energy costs amid rising prices and interested in incentive programs</p>
+                </div>
+
+                <div class="persona-card" data-persona="eco-conscious">
+                    <img src="https://placehold.co/100x100/2ecc71/ffffff?text=Eco" alt="Eco-Conscious Consumer">
+                    <h3>Eco-Conscious Consumer</h3>
+                    <p>Focused on sustainability and willing to invest in renewable energy solutions</p>
+                </div>
+
+                <div class="persona-card" data-persona="tech-enthusiast">
+                    <img src="https://placehold.co/100x100/2ecc71/ffffff?text=Tech" alt="Tech Enthusiast">
+                    <h3>Tech Enthusiast</h3>
+                    <p>Interested in smart home technology and digital energy optimization solutions</p>
+                </div>
+
+                <div class="persona-card" data-persona="rural">
+                    <img src="https://placehold.co/100x100/2ecc71/ffffff?text=Rural" alt="Rural Consumer">
+                    <h3>Rural Consumer</h3>
+                    <p>Dealing with infrastructure constraints and limited energy provider choices</p>
+                </div>
+
+                <div class="persona-card" data-persona="cald">
+                    <img src="https://placehold.co/100x100/2ecc71/ffffff?text=CALD" alt="CALD Household">
+                    <h3>CALD Household</h3>
+                    <p>Seeking culturally appropriate support and tailored information for energy management</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="upload-section hidden">
+            <div class="upload-container">
+                <h2>Upload Your Energy Bill</h2>
+                <div class="upload-box" id="dropZone">
+                    <img src="images/upload-icon.png" alt="Upload" class="upload-icon" />
+                    <p>Drag and drop your PDF bill here or</p>
+                    <button class="upload-btn">Choose File</button>
+                    <input type="file" id="fileInput" accept=".pdf" hidden />
+                </div>
+                <div class="upload-progress hidden">
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                    <p class="progress-text">Reading PDF... 0%</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Add loading overlay before the chatbot widget -->
+    <div class="loading-overlay hidden">
+        <div class="spinner"></div>
+        <div class="loading-text">Analyzing your bill...</div>
+    </div>
+
+    <div class="chatbot-widget">
+        <button class="chatbot-toggle">
+            <span class="chat-icon">💬</span>
+        </button>
+        <div class="chatbot-container hidden">
+            <div class="chatbot-header">
+                <h3>Energy Assistant</h3>
+                <button class="close-chat">×</button>
+            </div>
+            <div class="chat-messages"></div>
+            <div class="chat-input">
+                <input type="text" placeholder="Ask a question...">
+                <button class="send-message">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/openai-config.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html> 
